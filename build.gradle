@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.google.protobuf' version '0.9.4'
 }
 
 group = 'com.github.pedroluis02.grpc'
@@ -10,6 +11,11 @@ repositories {
 }
 
 dependencies {
+    implementation('com.google.protobuf:protobuf-java:4.28.3')
+    implementation('io.grpc:grpc-netty:1.68.1')
+    implementation('io.grpc:grpc-protobuf:1.68.1')
+    implementation('io.grpc:grpc-stub:1.68.1')
+
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }

@@ -1,2 +1,8 @@
-rootProject.name = 'file-transfer-grpc-java-example'
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenLocal()
+    }
+}
 
+rootProject.name = 'file-transfer-grpc-java-example'
