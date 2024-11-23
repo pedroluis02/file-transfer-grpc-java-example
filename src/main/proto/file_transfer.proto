@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.pedroluis02.grpc.filetransfer";
+option java_outer_classname = "FileTransferProto";
+option objc_class_prefix = "FT";
+
+import "google/protobuf/empty.proto";
+
+service FileTransferService {
+  rpc Info (google.protobuf.Empty) returns (MessageInfo) {}
+}
+
+message MessageInfo {
+  string message = 1;
+}
