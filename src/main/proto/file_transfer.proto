@@ -5,10 +5,12 @@ option java_package = "com.github.pedroluis02.grpc.filetransfer";
 option java_outer_classname = "FileTransferProto";
 option objc_class_prefix = "FT";
 
+package filetransfer;
+
 import "google/protobuf/empty.proto";
 
 service FileTransferService {
-  rpc Info (google.protobuf.Empty) returns (MessageInfo) {}
+  rpc Info (google.protobuf.Empty) returns (MessageInfo);
 }
 
 message MessageInfo {
