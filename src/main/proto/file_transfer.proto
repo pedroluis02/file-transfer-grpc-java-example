@@ -10,7 +10,7 @@ package filetransfer;
 import "google/protobuf/empty.proto";
 
 service FileTransferService {
-  rpc Info (google.protobuf.Empty) returns (MessageInfo);
+  rpc getInfo(google.protobuf.Empty) returns (MessageInfo);
 }
 
 message MessageInfo {
