@@ -16,6 +16,10 @@ https://github.com/google/protobuf-gradle-plugin
 
 ## Java sources Generation
 
-Build project and `.proto` files.
+Run proto generation for `.proto` files.
+
+Run `./gradlew generateProto`
+
+Or build project:
 
 Run `./gradlew build`
