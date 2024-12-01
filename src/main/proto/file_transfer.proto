@@ -11,8 +11,23 @@ import "google/protobuf/empty.proto";
 
 service FileTransferService {
   rpc getInfo(google.protobuf.Empty) returns (MessageInfo);
+  rpc transfer(stream TransferFile) returns (TransferStatus);
 }
 
 message MessageInfo {
   string message = 1;
+}
+
+message TransferFile {
+  bytes content = 1;
+}
+
+enum TransferStatusCode {
+  SUCCESS = 0;
+  ERROR = 1;
+}
+
+message TransferStatus {
+  TransferStatusCode code = 1;
+  string message = 2;
 }
