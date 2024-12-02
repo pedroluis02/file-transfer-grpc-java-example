@@ -4,7 +4,6 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.Empty;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.stub.StreamObserver;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -35,26 +34,7 @@ public class FileTransferClient {
 
         final var latch = new CountDownLatch(1);
 
-        final var clientObserver = new StreamObserver<TransferStatus>() {
-            @Override
-            public void onNext(TransferStatus transferStatus) {
-                System.out.println(String.format("transfer file: code=%s msg=%s", transferStatus.getCode(),
-                        transferStatus.getMessage()));
-            }
-
-            @Override
-            public void onError(Throwable throwable) {
-                System.err.println("onError: " + throwable.getMessage());
-            }
-
-            @Override
-            public void onCompleted() {
-                System.out.println("onCompleted");
-                latch.countDown();
-            }
-        };
-
-        final var serverObserver = stub.transfer(clientObserver);
+        final var serverObserver = stub.transfer(new ClientTransferStreamObserverImpl(latch));
         try (final var inputStream = Files.newInputStream(Path.of(filePath))) {
             var bytes = new byte[1024];
             int size;
