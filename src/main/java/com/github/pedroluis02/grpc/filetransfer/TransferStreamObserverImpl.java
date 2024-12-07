@@ -7,8 +7,12 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TransferStreamObserverImpl implements StreamObserver<TransferFile> {
+
+    private final Logger logger = Logger.getLogger(TransferStreamObserverImpl.class.getName());
 
     private TransferStatusCode status = null;
     private String message = null;
@@ -26,7 +30,7 @@ public class TransferStreamObserverImpl implements StreamObserver<TransferFile> 
         try {
             if (writer == null) {
                 final var file = "tmp-" + System.currentTimeMillis();
-                System.out.println("new file " + file);
+                logger.log(Level.INFO, "new file {0}", file);
 
                 writer = Files.newOutputStream(
                         Path.of(file),
@@ -44,7 +48,7 @@ public class TransferStreamObserverImpl implements StreamObserver<TransferFile> 
 
     @Override
     public void onError(Throwable throwable) {
-        System.out.println("onError");
+        logger.info("error");
         status = TransferStatusCode.ERROR;
         message = "error " + throwable.getMessage();
 
@@ -53,11 +57,11 @@ public class TransferStreamObserverImpl implements StreamObserver<TransferFile> 
 
     @Override
     public void onCompleted() {
-        System.err.println("onCompleted");
+        logger.info("completed");
         try {
             writer.close();
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            logger.log(Level.SEVERE, "writer close error: {0}", e.getMessage());
         }
 
         status = (status == null) ? TransferStatusCode.SUCCESS : status;

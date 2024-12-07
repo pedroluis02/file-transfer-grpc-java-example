@@ -8,14 +8,19 @@ import io.grpc.ManagedChannelBuilder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.concurrent.CountDownLatch;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class FileTransferClient {
+
+    private static final Logger logger = Logger.getLogger(FileTransferClient.class.getName());
 
     public static void main(String[] args) {
         final var channel = ManagedChannelBuilder.forTarget("localhost:8080")
                 .usePlaintext()
                 .build();
 
+        getInfo(channel);
         transfer(channel, "<FILE_PATH>");
     }
 
@@ -24,9 +29,7 @@ public class FileTransferClient {
 
         final var request = Empty.newBuilder().build();
         final var response = stub.getInfo(request);
-        System.out.println(response);
-
-        channel.shutdownNow();
+        logger.log(Level.INFO, "{0}", response);
     }
 
     private static void transfer(ManagedChannel channel, String filePath) {
@@ -47,7 +50,7 @@ public class FileTransferClient {
             serverObserver.onCompleted();
             latch.await();
         } catch (Exception e) {
-            System.err.println("error: " + e.getMessage());
+            logger.log(Level.SEVERE, e.getMessage());
 
             if (e instanceof InterruptedException) {
                 Thread.currentThread().interrupt();
