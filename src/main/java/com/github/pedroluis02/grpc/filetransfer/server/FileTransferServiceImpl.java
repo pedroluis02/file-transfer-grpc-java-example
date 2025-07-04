@@ -1,5 +1,9 @@
-package com.github.pedroluis02.grpc.filetransfer;
+package com.github.pedroluis02.grpc.filetransfer.server;
 
+import com.github.pedroluis02.grpc.filetransfer.FileTransferServiceGrpc;
+import com.github.pedroluis02.grpc.filetransfer.MessageInfo;
+import com.github.pedroluis02.grpc.filetransfer.TransferFile;
+import com.github.pedroluis02.grpc.filetransfer.TransferStatus;
 import com.google.protobuf.Empty;
 import io.grpc.stub.StreamObserver;
 

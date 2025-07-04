@@ -1,4 +1,4 @@
-package com.github.pedroluis02.grpc.filetransfer;
+package com.github.pedroluis02.grpc.filetransfer.server;
 
 import io.grpc.ServerBuilder;
 

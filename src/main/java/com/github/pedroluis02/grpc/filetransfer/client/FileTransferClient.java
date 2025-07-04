@@ -1,5 +1,7 @@
-package com.github.pedroluis02.grpc.filetransfer;
+package com.github.pedroluis02.grpc.filetransfer.client;
 
+import com.github.pedroluis02.grpc.filetransfer.FileTransferServiceGrpc;
+import com.github.pedroluis02.grpc.filetransfer.TransferFile;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Empty;
 import io.grpc.ManagedChannel;

@@ -1,5 +1,6 @@
-package com.github.pedroluis02.grpc.filetransfer;
+package com.github.pedroluis02.grpc.filetransfer.client;
 
+import com.github.pedroluis02.grpc.filetransfer.TransferStatus;
 import io.grpc.stub.StreamObserver;
 
 import java.util.concurrent.CountDownLatch;

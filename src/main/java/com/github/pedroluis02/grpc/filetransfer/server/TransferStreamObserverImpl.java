@@ -1,5 +1,8 @@
-package com.github.pedroluis02.grpc.filetransfer;
+package com.github.pedroluis02.grpc.filetransfer.server;
 
+import com.github.pedroluis02.grpc.filetransfer.TransferFile;
+import com.github.pedroluis02.grpc.filetransfer.TransferStatus;
+import com.github.pedroluis02.grpc.filetransfer.TransferStatusCode;
 import io.grpc.stub.StreamObserver;
 
 import java.io.IOException;
