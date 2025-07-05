@@ -18,7 +18,7 @@ public class FileTransferClient {
     private static final Logger logger = Logger.getLogger(FileTransferClient.class.getName());
 
     public static void main(String[] args) {
-        final var channel = ManagedChannelBuilder.forTarget("localhost:8080")
+        final var channel = ManagedChannelBuilder.forTarget("localhost:9090")
                 .usePlaintext()
                 .build();
 

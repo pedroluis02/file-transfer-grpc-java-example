@@ -5,7 +5,7 @@ import io.grpc.ServerBuilder;
 public class FileTransferServer {
 
     public static void main(String[] args) throws Exception {
-        final var server = ServerBuilder.forPort(8080)
+        final var server = ServerBuilder.forPort(9090)
                 .addService(new FileTransferServiceImpl())
                 .build();
 
